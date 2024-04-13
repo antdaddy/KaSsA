@@ -91,14 +91,17 @@ namespace Kassa
             // 
             // LoginForm
             // 
-            this.ClientSize = new System.Drawing.Size(950, 705);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.ClientSize = new System.Drawing.Size(1028, 673);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtUsername);
             this.Controls.Add(this.authLabel);
             this.Controls.Add(this.CancelButton);
             this.Controls.Add(this.btnLogin);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "LoginForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "                                                  ---АВТОРИЗАЦИЯ---";
             this.Load += new System.EventHandler(this.LoginForm_Load);
             this.ResumeLayout(false);

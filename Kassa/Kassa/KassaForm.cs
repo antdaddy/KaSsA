@@ -27,19 +27,29 @@ namespace Kassa
         {
 
         }
+        private void QuantityTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar)) // Проверяем, что введенный символ не является цифрой
+            {
+                e.Handled = true; // Отклоняем ввод символа
+            }
+        }
+
+  
 
         private void vvod_Click(object sender, EventArgs e)
         {
             //// Открываем диалоговое окно для ввода штрихкода и количества
             InputForm inputForm = new InputForm();
             if (inputForm.ShowDialog() == DialogResult.OK)
+                
             {
                 // Получаем введенные данные
                 string barcode = inputForm.Barcode;
                 string quantity = inputForm.Quantity;
-
+            
                 // Читаем данные из текстового файла
-                string pathToFile = @"C:\Users\ant_daddy\OneDrive\Рабочий стол\git\chekout\db.txt";
+                string pathToFile = @"C:\Users\ant_daddy\OneDrive\Рабочий стол\save_me\Kassa\Kassa\db.txt";
                 string[] lines = File.ReadAllLines(pathToFile);
 
                 // Находим строку с данными о товаре по barcode
@@ -134,7 +144,7 @@ namespace Kassa
 
         public string Get_Price(string barcode)
         {
-            string pathToFile = @"C:\Users\ant_daddy\OneDrive\Рабочий стол\git\chekout\db.txt";
+            string pathToFile = @"C:\Users\ant_daddy\OneDrive\Рабочий стол\save_me\Kassa\Kassa\db.txt"; ;
             string[] lines = File.ReadAllLines(pathToFile);
 
             for (int i = 0; i < lines.Length; i++)
@@ -176,7 +186,7 @@ namespace Kassa
             sb.Append("ИТОГО " + label2.Text);
 
             // Сохраняем данные в текстовый файл
-            string filePath = @"C:\Users\ant_daddy\OneDrive\Рабочий стол\git\chekout\Check.txt"; ;
+            string filePath = @"C:\Users\ant_daddy\OneDrive\Рабочий стол\save_me\Kassa\Kassa\Check.txt"; ;
             File.WriteAllText(filePath, sb.ToString());
 
             MessageBox.Show("Данные успешно экспортированы в файл Check.txt");
